@@ -1,0 +1,106 @@
+{
+  "types": [{
+    "new_type_name": "account_name",
+    "type": "name"
+  }],
+  "structs": [
+    {
+      "name": "transfer",
+      "base": "",
+      "fields": [
+        {"name":"from", "type":"account_name"},
+        {"name":"to", "type":"account_name"},
+        {"name":"quantity", "type":"asset"}
+        {"name":"memo", "type":"string"}
+      ]
+    },
+    {
+      "name": "account",
+      "base": "",
+      "fields": {
+        "account": "account_name",
+        "balance": "uint64"
+      }
+    },
+    {
+      "name": "history",
+      "base": "",
+      "fields": [
+        {"name":"datapath", "type":"string"},
+        {"name":"owner", "type":"account_name"},
+        {"name":"enckey", "type":"bytes"},
+        {"name":"readerspath", "type":"string"}
+      ]
+    },
+    {
+      "name": "demand",
+      "base": "",
+      "fields": [
+        {"name":"demander", "type":"account_name"},
+        {"name":"datapath", "type":"string"},
+        {"name":"bid", "type":"uint64"}
+      ]
+    },
+    {
+      "name": "demand_to_store",
+      "base": "",
+      "fields": [
+        {"name":"id", "type":"string"},
+        {"name":"bid", "type":"uint64"}
+      ]
+    },
+    {
+      "name": "approve",
+      "base": "",
+      "fields": [
+        {"name":"account", "type":"account_name"},
+        {"name":"datapath", "type":"string"}
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "name": "transfer",
+      "type": "transfer"
+    },
+    {
+      "name": "sethistory",
+      "type": "history"
+    },
+    {
+      "name": "removehistory",
+      "type": "string"
+    },
+    {
+      "name": "demand",
+      "type": "demand"
+    },
+    {
+      "name": "approve",
+      "type": "approve"
+    }
+  ],
+  "tables": [
+    {
+      "name": "accounts",
+      "type": "account",
+      "index_type": "i64",
+      "key_names": ["account"],
+      "key_types": ["account_name"]
+    },
+    {
+      "name": "histories",
+      "type": "history",
+      "index_type": "str",
+      "key_names": ["datapath"],
+      "key_types": ["string"]
+    },
+    {
+      "name": "demands",
+      "type": "demand_to_store",
+      "index_type": "str",
+      "key_names": ["id"],
+      "key_types": ["string"]
+    }
+  ]
+}
