@@ -1,0 +1,87 @@
+{
+  "types": [{
+    "new_type_name": "account_name",
+    "type": "name"
+  }],
+  "structs": [
+    {
+      "name": "sethistory",
+      "base": "",
+      "fields": [
+        {"name":"datapath", "type":"string"},
+        {"name":"owner", "type":"account_name"},
+        {"name":"enckey", "type":"string"},
+        {"name":"readers", "type":"string[]"}
+      ]
+    },
+    {
+      "name": "historyrow",
+      "base": "",
+      "fields": [
+        {"name":"datapath", "type":"string"},
+        {"name":"owner", "type":"account_name"},
+        {"name":"enckey", "type":"string"},
+        {"name":"readers", "type":"string[]"}
+      ]
+    },
+    {
+      "name": "demand",
+      "base": "",
+      "fields": [
+        {"name":"demander", "type":"account_name"},
+        {"name":"datapath", "type":"string"},
+        {"name":"bid", "type":"uint64"}
+      ]
+    },
+    {
+      "name": "demandrow",
+      "base": "",
+      "fields": [
+        {"name":"id", "type":"string"},
+        {"name":"bid", "type":"uint64"}
+      ]
+    },
+    {
+      "name": "approve",
+      "base": "",
+      "fields": [
+        {"name":"account", "type":"account_name"},
+        {"name":"datapath", "type":"string"}
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "name": "sethistory",
+      "type": "sethistory"
+    },
+    {
+      "name": "removehistory",
+      "type": "string"
+    },
+    {
+      "name": "demand",
+      "type": "demand"
+    },
+    {
+      "name": "approve",
+      "type": "approve"
+    }
+  ],
+  "tables": [
+    {
+      "name": "histories",
+      "type": "historyrow",
+      "index_type": "str",
+      "key_names": ["datapath"],
+      "key_types": ["string"]
+    },
+    {
+      "name": "demands",
+      "type": "demand",
+      "index_type": "str",
+      "key_names": ["id"],
+      "key_types": ["string"]
+    }
+  ]
+}
